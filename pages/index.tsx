@@ -106,6 +106,10 @@ const Home: NextPage = () => {
 
     var resultparsed = resultText.split("/");
     resultText = `Joguei fute.ooo #1 ${resultparsed.length}/6 \n\n${resultparsed.join("\n")}`;
+    
+    var keyboard = document.createElement("keyboard");
+    if(keyboard === null) return;
+    keyboard.style.pointerEvents = "none";
   }
 
   function enterFun() {
@@ -251,7 +255,7 @@ const Home: NextPage = () => {
         </div>
 
         <div className={styles.grid}>
-          <div className={styles.keyboardWrapper}>
+          <div className={styles.keyboardWrapper} id="keyboard" >
             <div className={styles.keyboardLineWrapper}>
               <div className={styles.keyboard_key}>
                 <li><h3>Q</h3></li>
