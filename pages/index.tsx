@@ -81,15 +81,19 @@ const Home: NextPage = () => {
         targetBlock = document.getElementsByClassName(styles.wordBlockWrapper)[letters.length - 1]
       } else if (targetDiv == 1) {
         targetBlock = document.getElementsByClassName(styles.wordBlockWrapper)[5 + letters.length]
+      } else if(targetDiv == 2) {
+        targetBlock = document.getElementsByClassName(styles.wordBlockWrapper)[10 + letters.length]
+      } else if(targetDiv == 3) {
+        targetBlock = document.getElementsByClassName(styles.wordBlockWrapper)[15 + letters.length]
+      } else if(targetDiv == 4) {
+        targetBlock = document.getElementsByClassName(styles.wordBlockWrapper)[20 + letters.length]
+      } else if(targetDiv == 5) {
+        targetBlock = document.getElementsByClassName(styles.wordBlockWrapper)[25 + letters.length]
+      } else if(targetDiv == 6) {
+        targetBlock = document.getElementsByClassName(styles.wordBlockWrapper)[30 + letters.length]
       }
   
       if(targetBlock === undefined) return;
-
-      if(letters.length === 0) {
-        targetBlock = document.getElementsByClassName(styles.wordBlockWrapper)[letters.length]
-      } else {
-        targetBlock = document.getElementsByClassName(styles.wordBlockWrapper)[letters.length - 1]
-      }
 
       targetBlock.innerHTML = `<h3></h3>`;
     } else return;
