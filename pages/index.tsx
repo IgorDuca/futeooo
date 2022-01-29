@@ -101,7 +101,7 @@ const Home: NextPage = () => {
     console.log({result_tries});
 
     var resultparsed = resultText.split("/");
-    resultText = `Joguei fute.ooo #1 ${result.length - 1}/6 \n\n${resultparsed.join("\n")}`;
+    resultText = `Joguei fute.ooo #1 ${resultparsed.length}/6 \n\n${resultparsed.join("\n")}`;
   }
 
   function enterFun() {
