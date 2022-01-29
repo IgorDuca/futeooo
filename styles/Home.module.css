@@ -113,9 +113,6 @@
   border-radius: 5px;
   width: 50px;
   height: 50px;
-}
-
-.wordBlockWrapper {
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -172,6 +169,23 @@
 
 .keyboard_key:not(:last-child) {
   margin-right: 3px;
+}
+
+.shareButton {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(73, 73, 219);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .125 ease-in-out;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+.shareButton:hover {
+  background-color: rgb(55, 55, 141);
 }
 
 @media (max-width: 600px) {
