@@ -10,6 +10,8 @@ import { FaBackspace } from 'react-icons/fa'
 
 import colorizeBlocks from '../scripts/blockColorizer'
 
+import daydata from '../data/daydata.json'
+
 import {
   WhatsappShareButton,
   WhatsappIcon,
@@ -36,7 +38,7 @@ const Home: NextPage = () => {
   var result_tries: string[] = [];
 
   const [ targetDiv, setTarget ] = useState(0);
-  const [ word, setWord ] = useState("wigan");
+  var word = daydata.word;
   const [ isCongrats, setCongrats ] = useState(true);
 
   function key_listener(e: any) {
@@ -105,7 +107,7 @@ const Home: NextPage = () => {
     console.log({result_tries});
 
     var resultparsed = resultText.split("/");
-    resultText = `Joguei fute.ooo #1 ${resultparsed.length}/6 \n\n${resultparsed.join("\n")}`;
+    resultText = `Joguei fute.ooo #${daydata.day} ${resultparsed.length}/6 \n\n${resultparsed.join("\n")}`;
     
     var keyboard = document.createElement("keyboard");
     if(keyboard === null) return;
