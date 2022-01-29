@@ -17,6 +17,7 @@ const Home: NextPage = () => {
   ]);
 
   const [ targetDiv, setTarget ] = useState(0);
+  const [ word, setWord ] = useState("ceara");
 
   function key_listener(e: any) {
     console.log(e.target.outerText)
@@ -27,9 +28,9 @@ const Home: NextPage = () => {
       }]);
     } else return;
 
-    console.log(letters.length)
-    document.getElementsByClassName(styles.wordBlockWrapper)[letters.length - 1].innerHTML = `<h3>${e.target.outerText}</h3>`
-
+    var targetBlock = document.getElementsByClassName(styles.wordBlockWrapper)[letters.length - 1]
+    targetBlock.innerHTML = `<h3>${e.target.outerText}</h3>`
+    targetBlock.classList.add('filled')
   };
 
   function backspaceFun() {
@@ -38,13 +39,55 @@ const Home: NextPage = () => {
       var lett = letters.map(letter => { return letter.letter });
       console.log(lett)
 
-      document.getElementsByClassName(styles.wordBlockWrapper)[letters.length - 1].innerHTML = `<h3></h3>`
+      if(letters.length === 0) {
+        var targetBlock = document.getElementsByClassName(styles.wordBlockWrapper)[letters.length]
+        targetBlock.innerHTML = `<h3></h3>`
+      } else {
+        var targetBlock = document.getElementsByClassName(styles.wordBlockWrapper)[letters.length - 1]
+        targetBlock.innerHTML = `<h3></h3>`
+      }
     } else return;
   };
 
   function enterFun() {
     var lett = letters.map(letter => { return letter.letter });
-    console.log(lett.join(""))
+    var word_string = lett.join("").toLowerCase();
+    console.log({word_string, word});
+
+    var matching_indexes = [];
+    var has_in_word = [];
+    var not_in_word = [];
+
+    var originalWordLetters = word.split("");
+
+    for(var i = 0; i < 5; i++) {
+      var target_letter = word_string[i];
+
+      if(originalWordLetters[i] === target_letter) {
+        matching_indexes.push({ letter: target_letter, index: i });
+      } else {
+        if(originalWordLetters[i].includes(target_letter) === true) {
+          has_in_word.push({ letter: target_letter, index: i });
+        } else { not_in_word.push({ letter: target_letter, index: i }); }
+      }
+    };
+
+    matching_indexes.forEach(ind => {
+      var targetBlock = document.getElementsByClassName(styles.wordBlockWrapper)[ind.index]
+      targetBlock.classList.add("rightindex")
+    });
+
+    has_in_word.forEach(ind => {
+      var targetBlock = document.getElementsByClassName(styles.wordBlockWrapper)[ind.index]
+      targetBlock.classList.add("hasinword")
+    });
+
+    not_in_word.forEach(ind => {
+      var targetBlock = document.getElementsByClassName(styles.wordBlockWrapper)[ind.index]
+      targetBlock.classList.add("notinword")
+    })
+
+    console.log({ matching_indexes, has_in_word })
   }
 
   return (
@@ -61,6 +104,14 @@ const Home: NextPage = () => {
         </h2>
 
         <div className={styles.grid} style={{padding:20, display:"inline-block"}} id="word-boxes-holder" >
+
+          <div className={styles.wordLineHolder} id="line-wrapper">
+            <div className={styles.wordBlockWrapper} id="generated-block" />
+            <div className={styles.wordBlockWrapper} id="generated-block" />
+            <div className={styles.wordBlockWrapper} id="generated-block" />
+            <div className={styles.wordBlockWrapper} id="generated-block" />
+            <div className={styles.wordBlockWrapper} id="generated-block" />
+          </div>
 
           <div className={styles.wordLineHolder} id="line-wrapper">
             <div className={styles.wordBlockWrapper} id="generated-block" />

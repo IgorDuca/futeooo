@@ -109,10 +109,22 @@
 }
 
 .wordBlockWrapper {
-  border: 1px solid rgb(209, 199, 199);
-  border-radius: 10px;
+  border: 2px solid rgb(226, 232, 240); 
+  border-radius: 5px;
   width: 50px;
   height: 50px;
+}
+
+.wordBlockWrapper {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  transition: .5 ease-in-out;
+}
+
+.filled {
+  border: 2px solid black;
 }
 
 .wordLineHolder:first-child {
@@ -121,7 +133,7 @@
 
 .wordLineHolder {
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   transition: .5s ease-in-out;
 }
 
@@ -133,28 +145,25 @@
   margin-right: 5px;
 }
 
-.wordBlockWrapper {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  display: flex;
-}
-
 .keyboardLineWrapper {
   display: flex;
 }
 
 .keyboard_key {
   color: black;
-  background: rgb(216, 213, 213);
+  background: rgb(226, 232, 240);
   border: none;
   border-radius: 12px;
   padding: 10px;
   width: 50px;
   text-align: center;
   font-size: 12px;
-  transition: .5s ease-in-out;
+  transition: .125s ease-in-out;
   cursor: pointer;
+}
+
+.keyboard_key:hover {
+  background: rgb(198, 204, 212);
 }
 
 .keyboardLineWrapper:not(:first-child){
