@@ -42,6 +42,8 @@ const Home: NextPage = () => {
   const [ isCongrats, setCongrats ] = useState(true);
 
   function key_listener(e: any) {
+    if(isCongrats === true) return false;
+
     if(letters.length <= 5) {
       setLetters((letters) => [...letters, {
         letter: e.target.outerText
