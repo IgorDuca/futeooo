@@ -159,6 +159,10 @@
   cursor: pointer;
 }
 
+.keyboard_key:active {
+  background: rgb(198, 204, 212);
+}
+
 .keyboard_key:hover {
   background: rgb(198, 204, 212);
 }

@@ -4,11 +4,14 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
+import { useCookies } from "react-cookie"
+
 import $ from 'jquery'
 
 import { FaBackspace } from 'react-icons/fa'
 
 import colorizeBlocks from '../scripts/blockColorizer'
+import colorizeKeyboard from '../scripts/colorizeKeyboard'
 
 import daydata from '../data/daydata.json'
 
@@ -35,7 +38,37 @@ const Home: NextPage = () => {
     }
   ]);
 
+  // const [ triesCookies, setTries ] = useCookies(["tries"]);
+
   var result_tries: string[] = [];
+
+  // useEffect(() => {
+  //   if(triesCookies.tries !== undefined) {
+  //     var words = triesCookies.tries.split("/");
+
+  //     words.forEach((word: string) => {
+  //       var word_index = words.indexOf(word) + 1;
+
+  //       word.split("").forEach(letter => {
+  //         var letter_index = word.split("").indexOf(letter) + 1;
+  //         var targetBlock = document.getElementById(`generated-block-${word_index}-${letter_index}`);
+
+  //         if(targetBlock === null) return;
+
+  //         setLetters((letters) => [...letters, {
+  //           letter: letter
+  //         }]);
+
+  //         targetBlock.innerHTML = `<h3>${letter}</h3>`;
+
+  //         cookiesEnter(word.split(""), targetDiv, triesCookies, setTries)
+
+  //         console.log({ letter, word_index, letter_index, targetBlock });
+  //       })
+  //     })
+  //   }
+  //   else return;
+  // }, [triesCookies])
 
   const [ targetDiv, setTarget ] = useState(0);
   var word = daydata.word;
@@ -51,6 +84,8 @@ const Home: NextPage = () => {
     } else return;
 
     var targetBlock;
+
+    console.log(targetDiv)
 
     if(targetDiv == 0) {
       targetBlock = document.getElementsByClassName(styles.wordBlockWrapper)[letters.length - 1]
@@ -171,6 +206,8 @@ const Home: NextPage = () => {
     console.log({ resultText })
 
     if(matching_indexes.length === 5) rightAnswer();
+
+    colorizeKeyboard(matching_indexes, has_in_word, not_in_word)
   }
 
   return (
@@ -261,82 +298,82 @@ const Home: NextPage = () => {
         <div className={styles.grid}>
           <div className={styles.keyboardWrapper} id="keyboard" >
             <div className={styles.keyboardLineWrapper}>
-              <div className={styles.keyboard_key}>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-1-1" >
                 <li><h3>Q</h3></li>
               </div>
 
-              <div className={styles.keyboard_key} onClick={ key_listener }>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-1-2">
                 <li> <h3>W</h3></li>
               </div>
 
-              <div className={styles.keyboard_key} onClick={ key_listener }>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-1-3">
                 <li><h3>E</h3></li>
               </div>
 
-              <div className={styles.keyboard_key} onClick={ key_listener }>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-1-4">
                 <li> <h3>R</h3></li>
               </div>
 
-              <div className={styles.keyboard_key} onClick={ key_listener }>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-1-5">
                 <li><h3>T</h3></li>
               </div>
 
-              <div className={styles.keyboard_key} onClick={ key_listener }>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-1-6">
                 <li><h3>Y</h3></li>
               </div>
 
-              <div className={styles.keyboard_key} onClick={ key_listener }>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-1-7">
                 <li><h3>U</h3></li>
               </div>
 
-              <div className={styles.keyboard_key} onClick={ key_listener }>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-1-8">
                 <li><h3>I</h3></li>
               </div>
 
-              <div className={styles.keyboard_key} onClick={ key_listener }>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-1-9">
                 <li><h3>O</h3></li>
               </div>
 
-              <div className={styles.keyboard_key} onClick={ key_listener }>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-1-10">
                 <li><h3>P</h3></li>
               </div>
             </div>
 
             <div className={styles.keyboardLineWrapper}>
-              <div className={styles.keyboard_key}>
-                <li onClick={ key_listener } ><h3>A</h3></li>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-2-1">
+                <li><h3>A</h3></li>
               </div>
 
-              <div className={styles.keyboard_key}>
-                <li onClick={ key_listener } ><h3>S</h3></li>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-2-2">
+                <li><h3>S</h3></li>
               </div>
 
-              <div className={styles.keyboard_key}>
-                <li onClick={ key_listener } ><h3>D</h3></li>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-2-3">
+                <li><h3>D</h3></li>
               </div>
 
-              <div className={styles.keyboard_key}>
-                <li onClick={ key_listener } ><h3>F</h3></li>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-2-4">
+                <li><h3>F</h3></li>
               </div>
 
-              <div className={styles.keyboard_key}>
-                <li onClick={ key_listener } ><h3>G</h3></li>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-2-5">
+                <li><h3>G</h3></li>
               </div>
 
-              <div className={styles.keyboard_key}>
-                <li onClick={ key_listener } ><h3>H</h3></li>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-2-6">
+                <li><h3>H</h3></li>
               </div>
 
-              <div className={styles.keyboard_key}>
-                <li onClick={ key_listener } ><h3>J</h3></li>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-2-7">
+                <li><h3>J</h3></li>
               </div>
 
-              <div className={styles.keyboard_key}>
-                <li onClick={ key_listener } ><h3>K</h3></li>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-2-8">
+                <li><h3>K</h3></li>
               </div>
 
-              <div className={styles.keyboard_key}>
-                <li onClick={ key_listener } ><h3>L</h3></li>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-2-9">
+                <li><h3>L</h3></li>
               </div>
 
               <div className={styles.keyboard_key} style={{width: 100}} onClick={backspaceFun} >
@@ -345,32 +382,32 @@ const Home: NextPage = () => {
             </div>
 
             <div className={styles.keyboardLineWrapper}>
-              <div className={styles.keyboard_key}>
-                <li onClick={ key_listener } ><h3>Z</h3></li>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-3-1">
+                <li><h3>Z</h3></li>
               </div>
 
-              <div className={styles.keyboard_key}>
-                <li onClick={ key_listener } ><h3>X</h3></li>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-3-2">
+                <li><h3>X</h3></li>
               </div>
 
-              <div className={styles.keyboard_key}>
-                <li onClick={ key_listener } ><h3>C</h3></li>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-3-3">
+                <li><h3>C</h3></li>
               </div>
 
-              <div className={styles.keyboard_key}>
-                <li onClick={ key_listener } ><h3>V</h3></li>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-3-4">
+                <li><h3>V</h3></li>
               </div>
 
-              <div className={styles.keyboard_key}>
-                <li onClick={ key_listener } ><h3>B</h3></li>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-3-5">
+                <li><h3>B</h3></li>
               </div>
 
-              <div className={styles.keyboard_key}>
-                <li onClick={ key_listener } ><h3>N</h3></li>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-3-6">
+                <li><h3>N</h3></li>
               </div>
 
-              <div className={styles.keyboard_key}>
-                <li onClick={ key_listener } ><h3>M</h3></li>
+              <div className={styles.keyboard_key} onClick={ key_listener } id="keycap-3-7">
+                <li><h3>M</h3></li>
               </div>
 
               <div className={styles.keyboard_key} style={{width: 100}} onClick={enterFun} >
