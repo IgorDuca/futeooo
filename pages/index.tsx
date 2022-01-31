@@ -144,7 +144,7 @@ const Home: NextPage = () => {
     console.log({result_tries});
 
     var resultparsed = resultText.split("/");
-    resultText = `Joguei fute.ooo #${daydata.day} ${resultparsed.length}/6 \n\n${resultparsed.join("\n")}`;
+    resultText = `Joguei https://zdnfuteooo.netlify.app #${daydata.day} ${resultparsed.length}/6 \n\n${resultparsed.join("\n")}`;
     
     var keyboard = document.createElement("keyboard");
     if(keyboard === null) return;
